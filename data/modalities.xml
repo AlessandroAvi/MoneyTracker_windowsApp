@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Data>
+	<Cash>0</Cash>
+	<PayPal>1</PayPal>
+	<PrePaidCard>2</PrePaidCard>
+	<ContoCorrente>3</ContoCorrente>
+</Data>	

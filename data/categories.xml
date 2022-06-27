@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Data>
+  <Rent>0</Rent>
+  <Groceries>1</Groceries>
+  <Living>2</Living>
+  <Transport>3</Transport>
+  <Sport>4</Sport>
+  <Other>5</Other>
+</Data>

@@ -1,0 +1,21 @@
+ - ) aggiungere budget? -> aggiungere qualche sorta di cap suli grafici a barre?
+
+ - ) definire logo
+
+ - ) trovare libreria o qualcosa che genera i PDF
+
+ - ) aggiungere pulsante refresh in home e list che refresha la list di transaction 
+
+ - ) list di cat e mod read da cfg + fare funzione read/write cfg giusta
+
+ - ) pagina setting aggiungere tasto save che salva le modifiche
+
+ - ) finire tasto remove item in pagina list
+
+ - ) in new item form aggiungere controllo su inserimento numero in text box con la virgola o punto
+
+ - ) mettere exceptions solo su path di confgurations
+
+ - ) generate pdf tasto per ora che non fa nulla
+
+ - ) fixare aggiunta nuovo elemento in panel list (probabilmente en line)
