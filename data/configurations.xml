@@ -1,1 +1,3 @@
-<?xml version="1.0"?><!--This file contains all the configurations for the money tracker app--><CSVPATH>C:\Users\aless\Documents\Projects\csharp_code\money_tracker\data\money_database.csv</CSVPATH>
+<?xml version="1.0"?>
+<!--This file contains all the configurations for the money tracker app-->
+<CSVPATH>C:\Users\aless\Documents\Projects\csharp_code\money_tracker\data\money_database.csv</CSVPATH>

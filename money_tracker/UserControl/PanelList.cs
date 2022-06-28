@@ -15,7 +15,7 @@ namespace money_tracker
     public partial class PanelList : UserControl
     {
 
-        List<Transactions> _database = new List<Transactions>();
+        List<Transactions> database = new List<Transactions>();
 
         DateTime beginDay;
         DateTime endDay;
@@ -25,11 +25,11 @@ namespace money_tracker
         PanelList panelList;
 
 
-        public PanelList(List<Transactions> database, ConfigValues _cfg)
+        public PanelList(List<Transactions> _database, ConfigValues _cfg)
         {
             InitializeComponent();
 
-            _database = database;
+            database = _database;
             initValues();
             refreshListView();
             panelList = this;
@@ -56,11 +56,13 @@ namespace money_tracker
                 string string_item = date + ";" + amount + ";" + type + ";" + mode + ";" + cat + ";" + note + Environment.NewLine;
 
                 File.AppendAllText(cfg.csvPath, string_item);
-
-                Console.WriteLine(string_item);
             }
 
-            refreshListView();
+            int type_ = Convert.ToInt32(type);
+            int mode_ = Convert.ToInt32(mode);
+            int cat_ = Convert.ToInt32(cat);
+            string[] elementStr = { date, amount, fromIntToType(type_), fromIntToModality(mode_), fromIntToCategory(cat_), note };
+            listViewTransactions.Items.Add(new ListViewItem(elementStr));
         }
 
         void removeTransaction(ListView.SelectedListViewItemCollection item)
@@ -93,7 +95,7 @@ namespace money_tracker
         {
             listViewTransactions.Items.Clear();
 
-            foreach (var item in _database)
+            foreach (var item in database)
             {
                 // check minimum date
                 if (!((item.year >= beginDay.Year) && (item.month >= beginDay.Month) && (item.month >= beginDay.Day))) continue;
@@ -196,6 +198,35 @@ namespace money_tracker
         private void datePickerEnd1_ValueChanged(object sender, EventArgs e)
         {
             endDay = datePickerEnd1.Value;
+        }
+
+
+        public void reloadCSV(string date)
+        {
+            using (TextFieldParser parser = new TextFieldParser(cfg.csvPath))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(";");
+                while (!parser.EndOfData)
+                {
+                    //Process row
+                    string[] transaction = parser.ReadFields();
+                    Transactions trans = new Transactions(transaction);
+                    // search for database if item already exists
+                    bool found = false;
+                    foreach (var item in database)
+                    {
+                        if ((item.note == trans.note) && (date == trans.date))
+                        {
+                            found = true;
+                        }
+                    }
+                    if (!found)
+                    {
+                        database.Add(trans);
+                    }
+                }
+            }
         }
     }
 }

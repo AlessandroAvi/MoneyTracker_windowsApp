@@ -32,15 +32,16 @@ namespace money_tracker
             string year     = date.Substring(6, 4);
             string month    = date.Substring(3, 2);
             string day      = date.Substring(0, 2);
-            string date_real = year + "-" + month + "-" + day;
-            string amount   = textNotes.Text;
+            string dateReal = year + "-" + month + "-" + day;
+            string amount   = textAmount.Text;
             string type     = comboType.SelectedIndex.ToString();
             string mod      = comboMod.SelectedIndex.ToString();
-            string cat = comboCat.SelectedIndex.ToString();
-            string note    = textNotes.Text;
+            string cat      = comboCat.SelectedIndex.ToString();
+            string note     = textNotes.Text;
 
-            father.addTransaction(date_real, amount, type, mod, cat, note);
+            string amount_ = amount.Replace('.', ',');
 
+            father.addTransaction(dateReal, amount_, type, mod, cat, note);
 
             this.Close();
         }

@@ -52,7 +52,7 @@
             this.ButtonAddItem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.ButtonAddItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ButtonAddItem.ForeColor = System.Drawing.Color.White;
-            this.ButtonAddItem.Location = new System.Drawing.Point(64, 755);
+            this.ButtonAddItem.Location = new System.Drawing.Point(64, 781);
             this.ButtonAddItem.Name = "ButtonAddItem";
             this.ButtonAddItem.Size = new System.Drawing.Size(180, 45);
             this.ButtonAddItem.TabIndex = 1;
@@ -67,7 +67,7 @@
             this.ButtonRemoveItem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.ButtonRemoveItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ButtonRemoveItem.ForeColor = System.Drawing.Color.White;
-            this.ButtonRemoveItem.Location = new System.Drawing.Point(301, 755);
+            this.ButtonRemoveItem.Location = new System.Drawing.Point(301, 781);
             this.ButtonRemoveItem.Name = "ButtonRemoveItem";
             this.ButtonRemoveItem.Size = new System.Drawing.Size(180, 45);
             this.ButtonRemoveItem.TabIndex = 2;
@@ -87,7 +87,7 @@
             this.listViewTransactions.HideSelection = false;
             this.listViewTransactions.Location = new System.Drawing.Point(64, 138);
             this.listViewTransactions.Name = "listViewTransactions";
-            this.listViewTransactions.Size = new System.Drawing.Size(1141, 537);
+            this.listViewTransactions.Size = new System.Drawing.Size(1207, 613);
             this.listViewTransactions.TabIndex = 3;
             this.listViewTransactions.UseCompatibleStateImageBehavior = false;
             this.listViewTransactions.View = System.Windows.Forms.View.Details;
@@ -168,18 +168,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 46);
+            this.label1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(60, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 16);
+            this.label1.Size = new System.Drawing.Size(185, 24);
             this.label1.TabIndex = 11;
             this.label1.Text = "Select starting date";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(314, 45);
+            this.label2.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(364, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 16);
+            this.label2.Size = new System.Drawing.Size(149, 24);
             this.label2.TabIndex = 12;
             this.label2.Text = "Select end date";
             // 

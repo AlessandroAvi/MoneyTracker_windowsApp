@@ -67,19 +67,14 @@ namespace money_tracker
 
         public void writeXml()
         {
-            // Create a new file in C:\\ dir  
             XmlTextWriter textWriter = new XmlTextWriter(xmlPath, null);
-            // Opens the document  
+            textWriter.Formatting = Formatting.Indented;
             textWriter.WriteStartDocument();
-            // Write comments  
             textWriter.WriteComment("This file contains all the configurations for the money tracker app");
-            // Write first element  
             textWriter.WriteStartElement("CSVPATH");
             textWriter.WriteString(csvPath);
             textWriter.WriteEndElement();
-            // Ends the document.  
             textWriter.WriteEndDocument();
-            // close writer  
             textWriter.Close();
         }
 

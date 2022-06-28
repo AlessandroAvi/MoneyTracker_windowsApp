@@ -102,7 +102,7 @@ namespace money_tracker
         {
             foreach (var item in _database)
             {
-                item.parseDate();
+                if (!item.parseDate()) continue;
                 if (item.month == startupMonth)
                 {
                     databaseCurrentMonth.Add(item);

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
+using System.Text.RegularExpressions;
+
 
 
 
@@ -71,24 +73,28 @@ namespace money_tracker
 
         private void ButtonHome_Click(object sender, EventArgs e)
         {
+            HighlightButton(0);
             PanelHome panel = new PanelHome(database);
             addUserControl(panel);
         }
 
         private void ButtonPlots_Click(object sender, EventArgs e)
         {
+            HighlightButton(1);
             PanelPlot panel = new PanelPlot(database, cfg);
             addUserControl(panel);
         }
 
         private void ButtonList_Click(object sender, EventArgs e)
         {
+            HighlightButton(2);
             PanelList panel = new PanelList(database, cfg);
             addUserControl(panel);
         }
 
         private void ButtonSetting_Click(object sender, EventArgs e)
         {
+            HighlightButton(3);
             PanelSettings panel = new PanelSettings(database, cfg);
             addUserControl(panel);
         }
@@ -96,6 +102,30 @@ namespace money_tracker
         private void ButtonQuit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void HighlightButton(int code)
+        {
+            ButtonHome.FillColor    = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonPlots.FillColor   = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonList.FillColor    = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonSetting.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+
+            if (code == 0)
+            {
+                ButtonHome.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+            }
+            else if(code == 1){
+                ButtonPlots.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+            }
+            else if (code == 2)
+            {
+                ButtonList.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+            }
+            else if (code == 3)
+            {
+                ButtonSetting.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+            }
         }
     }
 
@@ -129,12 +159,17 @@ namespace money_tracker
             amount = _amount;
         }
 
-        public void parseDate()
+        public bool parseDate()
         {
-            if (date.Length < 9) return;
+            Regex r = new Regex("\\d{4}\\-\\d{2}\\-\\d{2}");
+            Match match = r.Match(date);
+            if (!match.Success) return false;
+            if (date.Length != 10) return false;
+
             year  = Convert.ToInt16(date.Substring(0,4));
             month = Convert.ToInt16(date.Substring(5, 2));
             day   = Convert.ToInt16(date.Substring(8, 2));
+            return true;
         }
     }
 
@@ -159,6 +194,10 @@ namespace money_tracker
         public const int PICKER_R = 115;
         public const int PICKER_G = 201;
         public const int PICKER_B = 248;
+
+        public const int BUTTON_PRESS_R = 125;
+        public const int BUTTON_PRESS_G = 211;
+        public const int BUTTON_PRESS_B = 255;
     }
 
 

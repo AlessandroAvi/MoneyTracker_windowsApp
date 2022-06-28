@@ -6,8 +6,6 @@
 
  - ) aggiungere pulsante refresh in home e list che refresha la list di transaction 
 
- - ) list di cat e mod read da cfg + fare funzione read/write cfg giusta
-
  - ) pagina setting aggiungere tasto save che salva le modifiche
 
  - ) finire tasto remove item in pagina list
@@ -17,5 +15,3 @@
  - ) mettere exceptions solo su path di confgurations
 
  - ) generate pdf tasto per ora che non fa nulla
-
- - ) fixare aggiunta nuovo elemento in panel list (probabilmente en line)

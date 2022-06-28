@@ -54,11 +54,11 @@
             this.buttonPathCSV.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonPathCSV.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPathCSV.ForeColor = System.Drawing.Color.White;
-            this.buttonPathCSV.Location = new System.Drawing.Point(200, 120);
+            this.buttonPathCSV.Location = new System.Drawing.Point(72, 55);
             this.buttonPathCSV.Name = "buttonPathCSV";
-            this.buttonPathCSV.Size = new System.Drawing.Size(210, 45);
+            this.buttonPathCSV.Size = new System.Drawing.Size(160, 40);
             this.buttonPathCSV.TabIndex = 0;
-            this.buttonPathCSV.Text = "Select path of CSV";
+            this.buttonPathCSV.Text = "Data path";
             this.buttonPathCSV.Click += new System.EventHandler(this.buttonPathCSV_Click);
             // 
             // textPathCSV
@@ -72,13 +72,13 @@
             this.textPathCSV.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.textPathCSV.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textPathCSV.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textPathCSV.Location = new System.Drawing.Point(440, 123);
+            this.textPathCSV.Location = new System.Drawing.Point(289, 55);
             this.textPathCSV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textPathCSV.Name = "textPathCSV";
             this.textPathCSV.PasswordChar = '\0';
             this.textPathCSV.PlaceholderText = "";
             this.textPathCSV.SelectedText = "";
-            this.textPathCSV.Size = new System.Drawing.Size(275, 45);
+            this.textPathCSV.Size = new System.Drawing.Size(620, 40);
             this.textPathCSV.TabIndex = 2;
             // 
             // buttonPathXML
@@ -89,11 +89,11 @@
             this.buttonPathXML.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonPathXML.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPathXML.ForeColor = System.Drawing.Color.White;
-            this.buttonPathXML.Location = new System.Drawing.Point(176, 216);
+            this.buttonPathXML.Location = new System.Drawing.Point(72, 120);
             this.buttonPathXML.Name = "buttonPathXML";
-            this.buttonPathXML.Size = new System.Drawing.Size(240, 45);
+            this.buttonPathXML.Size = new System.Drawing.Size(160, 40);
             this.buttonPathXML.TabIndex = 3;
-            this.buttonPathXML.Text = "Select path of XML cfg";
+            this.buttonPathXML.Text = "Cfg path";
             this.buttonPathXML.Click += new System.EventHandler(this.buttonPathXML_Click);
             // 
             // textPathXML
@@ -105,21 +105,21 @@
             this.textPathXML.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textPathXML.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textPathXML.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textPathXML.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textPathXML.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textPathXML.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textPathXML.Location = new System.Drawing.Point(440, 216);
+            this.textPathXML.Location = new System.Drawing.Point(289, 120);
             this.textPathXML.Name = "textPathXML";
             this.textPathXML.PasswordChar = '\0';
             this.textPathXML.PlaceholderText = "";
             this.textPathXML.SelectedText = "";
-            this.textPathXML.Size = new System.Drawing.Size(200, 45);
+            this.textPathXML.Size = new System.Drawing.Size(620, 40);
             this.textPathXML.TabIndex = 4;
             // 
             // labelCat
             // 
             this.labelCat.AutoSize = true;
             this.labelCat.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCat.Location = new System.Drawing.Point(276, 374);
+            this.labelCat.Location = new System.Drawing.Point(68, 272);
             this.labelCat.Name = "labelCat";
             this.labelCat.Size = new System.Drawing.Size(250, 24);
             this.labelCat.TabIndex = 6;
@@ -129,7 +129,7 @@
             // 
             this.labelMod.AutoSize = true;
             this.labelMod.Font = new System.Drawing.Font("Roboto", 12F);
-            this.labelMod.Location = new System.Drawing.Point(605, 383);
+            this.labelMod.Location = new System.Drawing.Point(545, 272);
             this.labelMod.Name = "labelMod";
             this.labelMod.Size = new System.Drawing.Size(333, 24);
             this.labelMod.TabIndex = 8;
@@ -142,9 +142,9 @@
             this.columnHeader2});
             this.listViewCat.Font = new System.Drawing.Font("Roboto", 12F);
             this.listViewCat.HideSelection = false;
-            this.listViewCat.Location = new System.Drawing.Point(280, 426);
+            this.listViewCat.Location = new System.Drawing.Point(72, 321);
             this.listViewCat.Name = "listViewCat";
-            this.listViewCat.Size = new System.Drawing.Size(330, 293);
+            this.listViewCat.Size = new System.Drawing.Size(290, 270);
             this.listViewCat.TabIndex = 9;
             this.listViewCat.UseCompatibleStateImageBehavior = false;
             this.listViewCat.View = System.Windows.Forms.View.Details;
@@ -152,12 +152,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "CATEGORY";
-            this.columnHeader1.Width = 120;
+            this.columnHeader1.Width = 140;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "VALUE";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 130;
             // 
             // listViewMod
             // 
@@ -166,9 +166,9 @@
             this.columnHeader4});
             this.listViewMod.Font = new System.Drawing.Font("Roboto", 12F);
             this.listViewMod.HideSelection = false;
-            this.listViewMod.Location = new System.Drawing.Point(691, 426);
+            this.listViewMod.Location = new System.Drawing.Point(549, 321);
             this.listViewMod.Name = "listViewMod";
-            this.listViewMod.Size = new System.Drawing.Size(390, 293);
+            this.listViewMod.Size = new System.Drawing.Size(290, 270);
             this.listViewMod.TabIndex = 10;
             this.listViewMod.UseCompatibleStateImageBehavior = false;
             this.listViewMod.View = System.Windows.Forms.View.Details;
@@ -176,12 +176,12 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "MODALITY";
-            this.columnHeader3.Width = 120;
+            this.columnHeader3.Width = 140;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "VALUE";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 130;
             // 
             // buttonCat
             // 
@@ -191,7 +191,7 @@
             this.buttonCat.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonCat.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.buttonCat.ForeColor = System.Drawing.Color.White;
-            this.buttonCat.Location = new System.Drawing.Point(364, 757);
+            this.buttonCat.Location = new System.Drawing.Point(262, 597);
             this.buttonCat.Name = "buttonCat";
             this.buttonCat.Size = new System.Drawing.Size(100, 40);
             this.buttonCat.TabIndex = 11;
@@ -206,7 +206,7 @@
             this.buttonMod.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonMod.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.buttonMod.ForeColor = System.Drawing.Color.White;
-            this.buttonMod.Location = new System.Drawing.Point(813, 757);
+            this.buttonMod.Location = new System.Drawing.Point(739, 597);
             this.buttonMod.Name = "buttonMod";
             this.buttonMod.Size = new System.Drawing.Size(100, 40);
             this.buttonMod.TabIndex = 12;
@@ -235,7 +235,7 @@
             this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(959, 272);
+            this.guna2Button1.Location = new System.Drawing.Point(997, 579);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(180, 45);
             this.guna2Button1.TabIndex = 14;

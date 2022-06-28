@@ -19,11 +19,12 @@ namespace money_tracker
             cfg = _cfg;
             InitializeComponent();
 
-            //initListCat();
+            initListCat();
             initListMod();
 
 
-            textPathCSV.Text = "";
+            textPathCSV.Text = cfg.csvPath;
+            textPathXML.Text = cfg.xmlPath;
 
             // change colors
             this.BackColor          = System.Drawing.Color.FromArgb(col.BACKGROUND_R, col.BACKGROUND_G, col.BACKGROUND_B);
@@ -89,6 +90,7 @@ namespace money_tracker
         {
             NewEnum dlg = new NewEnum(cfg.categories);
             dlg.ShowDialog();
+            cfg.writeXml_categories();
             initListCat();
         }
 
@@ -96,12 +98,13 @@ namespace money_tracker
         {
             NewEnum dlg = new NewEnum(cfg.modalities);
             dlg.ShowDialog();
+            cfg.writeXml_modalities();
             initListMod();
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            cfg.readXml_categories();
+            cfg.writeXml_modalities();
             cfg.writeXml_categories();
         }
     }
