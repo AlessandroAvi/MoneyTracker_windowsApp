@@ -39,6 +39,7 @@
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.chartCartesian = new LiveCharts.Wpf.CartesianChart();
             this.label1 = new System.Windows.Forms.Label();
+            this.monthPicker = new Guna.UI2.WinForms.Guna2ComboBox();
             this.panelCurrentBalance.SuspendLayout();
             this.panelMonthBalance.SuspendLayout();
             this.SuspendLayout();
@@ -148,10 +149,40 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Current month transaction visualization";
             // 
+            // monthPicker
+            // 
+            this.monthPicker.BackColor = System.Drawing.Color.Transparent;
+            this.monthPicker.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.monthPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.monthPicker.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.monthPicker.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.monthPicker.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.monthPicker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.monthPicker.ItemHeight = 30;
+            this.monthPicker.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "Septemer",
+            "October",
+            "Novermber",
+            "December"});
+            this.monthPicker.Location = new System.Drawing.Point(224, 237);
+            this.monthPicker.Name = "monthPicker";
+            this.monthPicker.Size = new System.Drawing.Size(140, 36);
+            this.monthPicker.TabIndex = 5;
+            this.monthPicker.SelectedIndexChanged += new System.EventHandler(this.monthPicker_SelectedIndexChanged);
+            // 
             // PanelHome
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.monthPicker);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.panelMonthBalance);
@@ -179,5 +210,6 @@
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private LiveCharts.Wpf.CartesianChart chartCartesian;
         private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2ComboBox monthPicker;
     }
 }

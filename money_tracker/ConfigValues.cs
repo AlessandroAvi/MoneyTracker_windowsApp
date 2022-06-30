@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using System.Windows.Forms;
 
 namespace money_tracker
 {
@@ -67,15 +68,23 @@ namespace money_tracker
 
         public void writeXml()
         {
-            XmlTextWriter textWriter = new XmlTextWriter(xmlPath, null);
-            textWriter.Formatting = Formatting.Indented;
-            textWriter.WriteStartDocument();
-            textWriter.WriteComment("This file contains all the configurations for the money tracker app");
-            textWriter.WriteStartElement("CSVPATH");
-            textWriter.WriteString(csvPath);
-            textWriter.WriteEndElement();
-            textWriter.WriteEndDocument();
-            textWriter.Close();
+            try
+            {
+                XmlTextWriter textWriter = new XmlTextWriter(xmlPath, null);
+                textWriter.Formatting = Formatting.Indented;
+                textWriter.WriteStartDocument();
+                textWriter.WriteComment("This file contains all the configurations for the money tracker app");
+                textWriter.WriteStartElement("CSVPATH");
+                textWriter.WriteString(csvPath);
+                textWriter.WriteEndElement();
+                textWriter.WriteEndDocument();
+                textWriter.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR: There was an error while writing to XML\n\r" + e.Message);
+                return;
+            }
         }
 
 
@@ -88,73 +97,102 @@ namespace money_tracker
         {
             string path = cfgPath + @"\categories.xml";
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(path);
-
-            XmlNodeList nodeList = doc.SelectNodes("//text()");
-
-            foreach (XmlNode node in nodeList)
+            try
             {
-                categories.Add(new KeyValue(node.ParentNode.Name, Convert.ToInt32(node.InnerText)));
+                XmlDocument doc = new XmlDocument();
+                doc.Load(path);
+
+                XmlNodeList nodeList = doc.SelectNodes("//text()");
+
+                foreach (XmlNode node in nodeList)
+                {
+                    categories.Add(new KeyValue(node.ParentNode.Name, Convert.ToInt32(node.InnerText)));
+                }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR: There was an error while reading XML categories\n\r" + e.Message);
+            }
+
         }
 
         public void writeXml_categories()
         {
-            string path = cfgPath + @"\categories.xml";
-            XmlTextWriter textWriter = new XmlTextWriter(path, null);
-            textWriter.Formatting = Formatting.Indented;
-            textWriter.WriteStartDocument();
-            textWriter.WriteStartElement("Data");
-            foreach (var elem in categories)
+            try
             {
-                textWriter.WriteStartElement(elem.name);
-                textWriter.WriteString(elem.value.ToString());
+                string path = cfgPath + @"\categories.xml";
+                XmlTextWriter textWriter = new XmlTextWriter(path, null);
+                textWriter.Formatting = Formatting.Indented;
+                textWriter.WriteStartDocument();
+                textWriter.WriteStartElement("Data");
+                foreach (var elem in categories)
+                {
+                    textWriter.WriteStartElement(elem.name);
+                    textWriter.WriteString(elem.value.ToString());
+                    textWriter.WriteEndElement();
+                }
                 textWriter.WriteEndElement();
+                textWriter.WriteEndDocument();
+                textWriter.Close();
             }
-            textWriter.WriteEndElement();
-            textWriter.WriteEndDocument();
-            textWriter.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR: There aws an error while writing to XML categories\n\r" + e.Message);
+            }
+            
         }
 
         public void readXml_modalities()
         {
-            string path = cfgPath + @"\modalities.xml";
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load(path);
-
-            XmlNodeList nodeList = doc.SelectNodes("//text()");
-
-            foreach (XmlNode node in nodeList)
+            try
             {
-                modalities.Add(new KeyValue(node.ParentNode.Name, Convert.ToInt32(node.InnerText)));
+                string path = cfgPath + @"\modalities.xml";
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(path);
+
+                XmlNodeList nodeList = doc.SelectNodes("//text()");
+
+                foreach (XmlNode node in nodeList)
+                {
+                    modalities.Add(new KeyValue(node.ParentNode.Name, Convert.ToInt32(node.InnerText)));
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR: There was an error while reading XML modalities\n\r" + e.Message);
+                return;
             }
         }
 
         public void writeXml_modalities()
         {
-            string path = cfgPath + @"\modalities.xml";
-            XmlTextWriter textWriter = new XmlTextWriter(path, null);
-            textWriter.Formatting = Formatting.Indented;
-            textWriter.WriteStartDocument();
-            textWriter.WriteStartElement("Data");
-            foreach (var elem in modalities)
+            try
             {
-                textWriter.WriteStartElement(elem.name);
-                textWriter.WriteString(elem.value.ToString());
+                string path = cfgPath + @"\modalities.xml";
+                XmlTextWriter textWriter = new XmlTextWriter(path, null);
+                textWriter.Formatting = Formatting.Indented;
+                textWriter.WriteStartDocument();
+                textWriter.WriteStartElement("Data");
+                foreach (var elem in modalities)
+                {
+                    textWriter.WriteStartElement(elem.name);
+                    textWriter.WriteString(elem.value.ToString());
+                    textWriter.WriteEndElement();
+                }
                 textWriter.WriteEndElement();
+                textWriter.WriteEndDocument();
+                textWriter.Close();
             }
-            textWriter.WriteEndElement();
-            textWriter.WriteEndDocument();
-            textWriter.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR: There was an error while writing to XML modalities\n\r" + e.Message);
+                return;
+            }
         }
 
 
-        public void loadXml()
-        {
 
-        }
 
 
     }

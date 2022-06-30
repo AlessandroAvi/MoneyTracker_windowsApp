@@ -20,6 +20,8 @@ namespace money_tracker
         static List<Transactions> database = new List<Transactions>();
 
         static ConfigValues cfg;
+
+        public int activePanel;
          
 
 
@@ -28,6 +30,8 @@ namespace money_tracker
             cfg = new ConfigValues();
             cfg.readXml_categories();
             cfg.readXml_modalities();
+            activePanel = 100;
+
 
             loadCSV();
             InitializeComponent();
@@ -42,24 +46,33 @@ namespace money_tracker
             ButtonList.FillColor    = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             ButtonQuit.FillColor    = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             ButtonSetting.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
-
+            ButtonRefresh.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
         }
 
 
         public void loadCSV()
         {
-            using (TextFieldParser parser = new TextFieldParser(cfg.csvPath))
+            try
             {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(";");
-                while (!parser.EndOfData)
+                using (TextFieldParser parser = new TextFieldParser(cfg.csvPath))
                 {
-                    //Process row
-                    string[] transaction = parser.ReadFields();
-                    Transactions trans = new Transactions(transaction);
-                    database.Add(trans);
+                    parser.TextFieldType = FieldType.Delimited;
+                    parser.SetDelimiters(";");
+                    while (!parser.EndOfData)
+                    {
+                        //Process row
+                        string[] transaction = parser.ReadFields();
+                        Transactions trans = new Transactions(transaction);
+                        database.Add(trans);
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR: here was an error while reading the CSV \n\r" + e.Message);
+                return;
+            }
+            
         }
 
 
@@ -73,28 +86,32 @@ namespace money_tracker
 
         private void ButtonHome_Click(object sender, EventArgs e)
         {
-            HighlightButton(0);
+            activePanel = 0;
+            HighlightButton(activePanel);
             PanelHome panel = new PanelHome(database);
             addUserControl(panel);
         }
 
         private void ButtonPlots_Click(object sender, EventArgs e)
         {
-            HighlightButton(1);
+            activePanel = 1;
+            HighlightButton(activePanel);
             PanelPlot panel = new PanelPlot(database, cfg);
             addUserControl(panel);
         }
 
         private void ButtonList_Click(object sender, EventArgs e)
         {
-            HighlightButton(2);
+            activePanel = 2;
+            HighlightButton(activePanel);
             PanelList panel = new PanelList(database, cfg);
             addUserControl(panel);
         }
 
         private void ButtonSetting_Click(object sender, EventArgs e)
         {
-            HighlightButton(3);
+            activePanel = 3;
+            HighlightButton(activePanel);
             PanelSettings panel = new PanelSettings(database, cfg);
             addUserControl(panel);
         }
@@ -125,6 +142,27 @@ namespace money_tracker
             else if (code == 3)
             {
                 ButtonSetting.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+            }
+        }
+
+
+
+        private void ButtonRefresh_Click(object sender, EventArgs e)
+        {
+            database.Clear();
+            loadCSV();
+            if (activePanel==0)
+            {
+                ButtonHome.PerformClick();
+            }else if (activePanel == 1)
+            {
+                ButtonPlots.PerformClick();
+            }else if (activePanel == 2)
+            {
+                ButtonList.PerformClick();
+            }else if (activePanel == 3)
+            {
+                ButtonSetting.PerformClick();
             }
         }
     }
@@ -198,6 +236,10 @@ namespace money_tracker
         public const int BUTTON_PRESS_R = 125;
         public const int BUTTON_PRESS_G = 211;
         public const int BUTTON_PRESS_B = 255;
+
+        public const int DATE_R = 115;
+        public const int DATE_G = 201;
+        public const int DATE_B = 248;
     }
 
 

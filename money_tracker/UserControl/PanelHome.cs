@@ -17,18 +17,22 @@ namespace money_tracker
     public partial class PanelHome : UserControl
     {
         List<Transactions> databaseCurrentMonth = new List<Transactions>();
-        List<Transactions> _database            = new List<Transactions>();
+        List<Transactions> database            = new List<Transactions>();
 
         ChartValues<double> plotValues = new ChartValues<double>();
 
 
-        int startupMonth = Convert.ToInt16(DateTime.Now.ToString("MM"));
+        int startupMonth;
+        int currentMonth = DateTime.Now.Month;
 
-        public PanelHome(List<Transactions> database)
+        public PanelHome(List<Transactions> _database)
         {
+            database = _database;
 
-            _database = database;
             InitializeComponent();
+
+            monthPicker.SelectedIndex = currentMonth - 1;
+            startupMonth = monthPicker.SelectedIndex + 1;
 
             filterLastMonth();
             plotValues1Month();
@@ -44,13 +48,14 @@ namespace money_tracker
             this.BackColor = System.Drawing.Color.FromArgb(col.BACKGROUND_R, col.BACKGROUND_G, col.BACKGROUND_B);
             panelCurrentBalance.BackColor = System.Drawing.Color.FromArgb(col.BOX_R, col.BOX_G,col.BOX_B);
             panelMonthBalance.BackColor   = System.Drawing.Color.FromArgb(col.BOX_R, col.BOX_G,col.BOX_B);
+            monthPicker.FillColor         = System.Drawing.Color.FromArgb(col.DATE_R, col.DATE_G, col.DATE_B);
         }
 
 
         public void setLabelTotalBalance()
         {
             double balance = 0;
-            foreach (var item in _database)
+            foreach (var item in database)
             {
                 if (item.type == 0)
                 {
@@ -95,12 +100,23 @@ namespace money_tracker
 
         public void setLabelDaysCounter()
         {
-            labelDaysCounter.Text = "Transaction of the last " + DateTime.Now.Day + " days";
+            if (currentMonth < startupMonth)
+            {
+                labelDaysCounter.Text = "No data available";
+            }
+            else if (currentMonth > startupMonth)
+            {
+                labelDaysCounter.Text = "Transaction of the last " + DateTime.DaysInMonth(DateTime.Now.Year, startupMonth) + " days of month " + startupMonth;
+            }
+            else
+            {
+                labelDaysCounter.Text = "Transaction of the last " + DateTime.Now.Day + " days";
+            }
         }
 
         public void filterLastMonth()
         {
-            foreach (var item in _database)
+            foreach (var item in database)
             {
                 if (!item.parseDate()) continue;
                 if (item.month == startupMonth)
@@ -111,62 +127,22 @@ namespace money_tracker
         }
 
 
-        public void plotValues3Month()
-        {
-            // get current month and day
-            int day = DateTime.Now.Day;
-            int month = DateTime.Now.Month;
-            int year = DateTime.Now.Year;
-            double balance = 0;
-
-            int daysLast3Months = day + DateTime.DaysInMonth(year, month - 1) + DateTime.DaysInMonth(year, month - 2);
-
-            // fill the list with zeroes
-            for(int i=0; i<daysLast3Months; i++)
-            {
-                plotValues.Add(0);
-            }
-
-
-            // fill the list with the actial values
-            foreach (var item in _database)
-            {
-                int counter =  0;
-                double sign = (item.type==0? -1:1);
-
-                balance += item.amount * sign;
-
-                if (item.month == month-2)
-                {
-                    counter = item.day - 1;
-                    plotValues[counter] = balance;
-                }
-                else if (item.month == month - 1)
-                {
-                    counter = DateTime.DaysInMonth(year, month - 1) + item.day - 2;
-                    plotValues[counter] = balance;
-                }
-                else if (item.month == month)
-                {
-                    counter = DateTime.DaysInMonth(year, month - 2) + DateTime.DaysInMonth(year, month - 1) + item.day - 3;
-                    plotValues[counter] = balance;
-                }
-
-                for (int i=counter; i<plotValues.Count; i++)
-                {
-                    plotValues[i] = balance;
-                }
-            }
-        }
-
-
         void plotValues1Month()
         {
-            // get current month and day
-            int day = DateTime.Now.Day;
-            int month = DateTime.Now.Month;
-            int year = DateTime.Now.Year;
+            plotValues.Clear();
+            int day, month;
             double balance = 0;
+            int year = DateTime.Now.Year;
+            if (startupMonth == currentMonth)
+            {            
+                day = DateTime.Now.Day;
+                month = DateTime.Now.Month;
+            }
+            else
+            {
+                day = DateTime.DaysInMonth(year, startupMonth);
+                month = startupMonth;
+            }
 
             // fill the list with zeroes
             for (int i = 0; i < day; i++)
@@ -174,9 +150,8 @@ namespace money_tracker
                 plotValues.Add(0);
             }
 
-
             // fill the list with the actial values
-            foreach (var item in _database)
+            foreach (var item in database)
             {
                 int counter = 0;
                 double sign = (item.type == 0 ? -1 : 1);
@@ -195,11 +170,7 @@ namespace money_tracker
                 }
             }
 
-
             elementHost1.BackColor = System.Drawing.Color.FromArgb(col.BACKGROUND_R, col.BACKGROUND_G, col.BACKGROUND_B);
-            //elementHost1.ChartAreas[0].BackColor = System.Drawing.Color.FromArgb(col.BACKGROUND_R, col.BACKGROUND_G, col.BACKGROUND_B);
-            //elementHost1.Legends[0].BackColor = Color.Transparent;
-
         }
 
 
@@ -220,45 +191,26 @@ namespace money_tracker
             chartCartesian.Series = data;
         }
 
+        private void monthPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            startupMonth = monthPicker.SelectedIndex + 1;
+            databaseCurrentMonth.Clear();
+            filterLastMonth();
+            plotValues1Month();
+            setLabelTotalBalance();
+            setLabelMonthBalance();
+            setLabelMonthExpenses();
+            setLabelDaysCounter();
+            createPlotTransactions();
+        }
 
 
 
 
 
-            
 
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
-
-        
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

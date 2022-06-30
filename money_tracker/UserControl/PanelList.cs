@@ -40,6 +40,7 @@ namespace money_tracker
             this.BackColor              = Color.FromArgb(col.BACKGROUND_R, col.BACKGROUND_G, col.BACKGROUND_B);
             buttonDateApply.FillColor   = Color.FromArgb(col.BUTTON_R,col.BUTTON_G,col.BUTTON_B);
             ButtonAddItem.FillColor     = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonPDF.FillColor         = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             ButtonRemoveItem.FillColor  = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             datePickerBegin1.FillColor  = Color.FromArgb(col.PICKER_R, col.PICKER_G, col.PICKER_B);
             datePickerEnd1.FillColor    = Color.FromArgb(col.PICKER_R, col.PICKER_G, col.PICKER_B);
@@ -51,18 +52,26 @@ namespace money_tracker
 
         public void addTransaction(string date, string amount, string type, string mode, string cat, string note)
         {
-            if (File.Exists(cfg.csvPath))
+            try 
             {
-                string string_item = date + ";" + amount + ";" + type + ";" + mode + ";" + cat + ";" + note + Environment.NewLine;
+                if (File.Exists(cfg.csvPath))
+                {
+                    string string_item = date + ";" + amount + ";" + type + ";" + mode + ";" + cat + ";" + note + Environment.NewLine;
 
-                File.AppendAllText(cfg.csvPath, string_item);
+                    File.AppendAllText(cfg.csvPath, string_item);
+                }
+
+                int type_ = Convert.ToInt32(type);
+                int mode_ = Convert.ToInt32(mode);
+                int cat_ = Convert.ToInt32(cat);
+                string[] elementStr = { date, amount, fromIntToType(type_), fromIntToModality(mode_), fromIntToCategory(cat_), note };
+                listViewTransactions.Items.Add(new ListViewItem(elementStr));
             }
-
-            int type_ = Convert.ToInt32(type);
-            int mode_ = Convert.ToInt32(mode);
-            int cat_ = Convert.ToInt32(cat);
-            string[] elementStr = { date, amount, fromIntToType(type_), fromIntToModality(mode_), fromIntToCategory(cat_), note };
-            listViewTransactions.Items.Add(new ListViewItem(elementStr));
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR: There was an error while writing to CSV\n\r" + e.Message);
+                return;
+            }
         }
 
         void removeTransaction(ListView.SelectedListViewItemCollection item)
@@ -200,33 +209,9 @@ namespace money_tracker
             endDay = datePickerEnd1.Value;
         }
 
-
-        public void reloadCSV(string date)
+        private void ButtonPDF_Click(object sender, EventArgs e)
         {
-            using (TextFieldParser parser = new TextFieldParser(cfg.csvPath))
-            {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(";");
-                while (!parser.EndOfData)
-                {
-                    //Process row
-                    string[] transaction = parser.ReadFields();
-                    Transactions trans = new Transactions(transaction);
-                    // search for database if item already exists
-                    bool found = false;
-                    foreach (var item in database)
-                    {
-                        if ((item.note == trans.note) && (date == trans.date))
-                        {
-                            found = true;
-                        }
-                    }
-                    if (!found)
-                    {
-                        database.Add(trans);
-                    }
-                }
-            }
+
         }
     }
 }

@@ -1,0 +1,17 @@
+COLUMN 0
+	date-> string -> yyyy/mm/dd
+
+COLUMN 1
+	amount-> float
+
+COLUMN 2 
+	type -> int -> 0=expense; 1=income
+
+COLUMN 3
+	modality -> int -> 0=cash; 1=paypal; 2=pre paid card; 3=conto corrente card
+
+COLUMN 4
+	category -> int -> 0=rent; 1=groceries; 2=living; 3=transport; 4=sport; 5=other 
+
+COLUMN 5
+	notes -> string

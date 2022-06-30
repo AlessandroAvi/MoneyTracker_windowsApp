@@ -42,6 +42,7 @@
             this.datePickerEnd1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ButtonPDF = new Guna.UI2.WinForms.Guna2Button();
             this.SuspendLayout();
             // 
             // ButtonAddItem
@@ -50,7 +51,7 @@
             this.ButtonAddItem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.ButtonAddItem.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.ButtonAddItem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.ButtonAddItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ButtonAddItem.Font = new System.Drawing.Font("Roboto", 10.8F);
             this.ButtonAddItem.ForeColor = System.Drawing.Color.White;
             this.ButtonAddItem.Location = new System.Drawing.Point(64, 781);
             this.ButtonAddItem.Name = "ButtonAddItem";
@@ -65,7 +66,7 @@
             this.ButtonRemoveItem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.ButtonRemoveItem.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.ButtonRemoveItem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.ButtonRemoveItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ButtonRemoveItem.Font = new System.Drawing.Font("Roboto", 10.8F);
             this.ButtonRemoveItem.ForeColor = System.Drawing.Color.White;
             this.ButtonRemoveItem.Location = new System.Drawing.Point(301, 781);
             this.ButtonRemoveItem.Name = "ButtonRemoveItem";
@@ -185,10 +186,26 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Select end date";
             // 
+            // ButtonPDF
+            // 
+            this.ButtonPDF.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.ButtonPDF.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.ButtonPDF.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.ButtonPDF.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.ButtonPDF.Font = new System.Drawing.Font("Roboto", 10.8F);
+            this.ButtonPDF.ForeColor = System.Drawing.Color.White;
+            this.ButtonPDF.Location = new System.Drawing.Point(1094, 781);
+            this.ButtonPDF.Name = "ButtonPDF";
+            this.ButtonPDF.Size = new System.Drawing.Size(177, 45);
+            this.ButtonPDF.TabIndex = 13;
+            this.ButtonPDF.Text = "Generate PDF";
+            this.ButtonPDF.Click += new System.EventHandler(this.ButtonPDF_Click);
+            // 
             // PanelList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Controls.Add(this.ButtonPDF);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.datePickerEnd1);
@@ -219,5 +236,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker datePickerEnd1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2Button ButtonPDF;
     }
 }
