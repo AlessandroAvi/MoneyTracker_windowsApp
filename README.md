@@ -5,7 +5,7 @@ The app gets the data from a csv that is specifically formatted to be correctly 
 
 ## UI
 
-<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/Home.jpg" width=70% height=70%>
+<img src="https://github.com/AlessandroAvi/money_tracker_app/blob/main/screenshots/Home.jpg" width=70% height=70%>
 
 <img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/Plots.jpg" width=70% height=70%>
 
