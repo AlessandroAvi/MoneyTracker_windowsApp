@@ -49,7 +49,7 @@
             this.panelCurrentBalance.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panelCurrentBalance.Controls.Add(this.labelTotalBalance);
             this.panelCurrentBalance.Controls.Add(this.label2);
-            this.panelCurrentBalance.Location = new System.Drawing.Point(94, 49);
+            this.panelCurrentBalance.Location = new System.Drawing.Point(799, 49);
             this.panelCurrentBalance.Name = "panelCurrentBalance";
             this.panelCurrentBalance.Size = new System.Drawing.Size(457, 152);
             this.panelCurrentBalance.TabIndex = 1;
@@ -82,7 +82,7 @@
             this.panelMonthBalance.Controls.Add(this.labelMonthExpenses);
             this.panelMonthBalance.Controls.Add(this.labelMonthBalance);
             this.panelMonthBalance.Controls.Add(this.label4);
-            this.panelMonthBalance.Location = new System.Drawing.Point(724, 49);
+            this.panelMonthBalance.Location = new System.Drawing.Point(267, 49);
             this.panelMonthBalance.Name = "panelMonthBalance";
             this.panelMonthBalance.Size = new System.Drawing.Size(451, 247);
             this.panelMonthBalance.TabIndex = 2;
@@ -172,7 +172,7 @@
             "October",
             "Novermber",
             "December"});
-            this.monthPicker.Location = new System.Drawing.Point(224, 237);
+            this.monthPicker.Location = new System.Drawing.Point(64, 49);
             this.monthPicker.Name = "monthPicker";
             this.monthPicker.Size = new System.Drawing.Size(140, 36);
             this.monthPicker.TabIndex = 5;

@@ -4,8 +4,6 @@
 
  - ) fixare refresh button che non funziona su panels 
 
- - ) fixare combo box main page non funzione su mesi vecchi
-
  - ) pagina setting aggiungere tasto save che salva le modifiche
 
  - ) finire tasto remove item in pagina list

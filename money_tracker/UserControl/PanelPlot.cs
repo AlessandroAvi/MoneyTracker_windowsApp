@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using LiveCharts;
-using LiveCharts.Wpf;
 
     
 
@@ -21,7 +14,7 @@ namespace money_tracker
 
         ConfigValues cfg;
 
-        List<Transactions> _database = new List<Transactions>();
+        List<Transactions> database = new List<Transactions>();
         List<Transactions> filteredDatabase = new List<Transactions>();
 
         double totalExpenses = 0;
@@ -31,36 +24,50 @@ namespace money_tracker
         double[] categoryExpense = { 0, 0, 0, 0, 0, 0 };
         double[] modalityExpenses = { 0, 0, 0, 0 };
 
+        int selectedMonth;
+        int currentMonth;
 
-        public PanelPlot(List<Transactions> database, ConfigValues _cfg)
+
+        public PanelPlot(List<Transactions> _database, ConfigValues _cfg)
         {
             cfg = _cfg;
-            _database = database;
+            database = _database;
             InitializeComponent();
 
-            filterDatabase();
-
-            computePieCharts();
-            loadPieChartCategory();
-            loadPieChartModality();
-            loadBarPlot();
-            createPieChartNecessary();
+            currentMonth = DateTime.Now.Month;
+            monthPicker.SelectedIndex = currentMonth - 1;
 
             // change colors
-            this.BackColor = System.Drawing.Color.FromArgb(col.BACKGROUND_R, col.BACKGROUND_G, col.BACKGROUND_B);
+            this.BackColor        = System.Drawing.Color.FromArgb(col.BACKGROUND_R, col.BACKGROUND_G, col.BACKGROUND_B);
+            monthPicker.FillColor = System.Drawing.Color.FromArgb(col.DATE_R, col.DATE_G, col.DATE_B);
         }
 
 
-
+        private void resetCounters()
+        {
+            totalExpenses = 0;
+            totalEntries = 0;
+            necessaryExpenses = 0;
+            notNeccessaryExpenses = 0;
+            for(int i = 0; i < categoryExpense.Length; i++)
+            {
+                categoryExpense[i] = 0;
+            }
+            for(int i=0; i<modalityExpenses.Length; i++)
+            {
+                modalityExpenses[i] = 0;
+            }
+        }               
+        
         private void filterDatabase()
         {
             int currentMonth = DateTime.Today.Month;
             int currentYear = DateTime.Today.Year;
 
-            foreach (var item in _database)
+            foreach (var item in database)
             {
                 // check minimum date
-                if (!((item.year == currentYear) && (item.month == currentMonth))) continue;
+                if (!((item.year == currentYear) && (item.month == selectedMonth))) continue;
 
                 filteredDatabase.Add(item);
             }
@@ -98,6 +105,7 @@ namespace money_tracker
 
         void loadPieChartCategory()
         {
+            pieChartModality.Series[0].Points.Clear();
             string[] names = new string[cfg.categories.Count+1];
             float[] values = new float[cfg.categories.Count+1];
 
@@ -123,6 +131,7 @@ namespace money_tracker
 
         void loadPieChartModality()
         {
+            pieChartCategory.Series[0].Points.Clear();
             string[] names = new string[cfg.modalities.Count];
             float[] values = new float[cfg.modalities.Count];
 
@@ -145,13 +154,14 @@ namespace money_tracker
 
         void loadBarPlot()
         {
+            barChart_.Series[0].Points.Clear();
             string[] name = new string[cfg.categories.Count];
             double[] value = new double[cfg.categories.Count];
 
             for (int i=0; i<categoryExpense.Length; i++)
             {
                 value[i] = categoryExpense[i];
-                name[i] = cfg.categories[i].name;
+                name[i]  = cfg.categories[i].name;
             }
 
 
@@ -165,13 +175,18 @@ namespace money_tracker
 
 
 
-        void createPieChartNecessary() {
+        void loadPieChartNecessary() {
+            pieChartNecessary.Series[0].Points.Clear();
             string[] x = { "Necessary expenses", "Not necessary expenses", "Savings" };
             double[] y = new double[3];
 
             y[0] = necessaryExpenses;
             y[1] = notNeccessaryExpenses;
             y[2] = totalEntries - necessaryExpenses - notNeccessaryExpenses;
+            if (y[2] < 0)
+            {
+                y[2] = 0;
+            }
 
             pieChartNecessary.Series[0].ChartType = SeriesChartType.Pie;
             pieChartNecessary.Series[0].Points.DataBindXY(x, y);
@@ -181,8 +196,20 @@ namespace money_tracker
             pieChartNecessary.Legends[0].BackColor = Color.Transparent;
         }
 
+        private void monthPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedMonth = monthPicker.SelectedIndex + 1;
 
+            filteredDatabase.Clear();
+            resetCounters();
 
+            filterDatabase();
+            computePieCharts();
+            loadPieChartCategory();
+            loadPieChartModality();
+            loadBarPlot();
+            loadPieChartNecessary();
+        }
     }
 
 

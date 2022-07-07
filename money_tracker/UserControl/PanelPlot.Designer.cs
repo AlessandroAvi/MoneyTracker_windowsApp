@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.monthPicker = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pieChartNecessary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pieChartCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pieChartModality)).BeginInit();
@@ -125,9 +126,9 @@
             this.label1.Font = new System.Drawing.Font("Roboto", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(723, 441);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(327, 41);
+            this.label1.Size = new System.Drawing.Size(272, 41);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Expenses by method";
+            this.label1.Text = "Payment method";
             // 
             // label2
             // 
@@ -135,9 +136,9 @@
             this.label2.Font = new System.Drawing.Font("Roboto", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(46, 441);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(344, 41);
+            this.label2.Size = new System.Drawing.Size(111, 41);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Expenses by category";
+            this.label2.Text = "Recap";
             // 
             // label3
             // 
@@ -145,9 +146,9 @@
             this.label3.Font = new System.Drawing.Font("Roboto", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(46, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(346, 41);
+            this.label3.Size = new System.Drawing.Size(113, 41);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Macro expense goups";
+            this.label3.Text = "Macro";
             // 
             // label4
             // 
@@ -155,13 +156,43 @@
             this.label4.Font = new System.Drawing.Font("Roboto", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(723, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(327, 41);
+            this.label4.Size = new System.Drawing.Size(154, 41);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Expense by category";
+            this.label4.Text = "Category";
+            // 
+            // monthPicker
+            // 
+            this.monthPicker.BackColor = System.Drawing.Color.Transparent;
+            this.monthPicker.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.monthPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.monthPicker.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.monthPicker.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.monthPicker.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.monthPicker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.monthPicker.ItemHeight = 30;
+            this.monthPicker.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.monthPicker.Location = new System.Drawing.Point(1177, 15);
+            this.monthPicker.Name = "monthPicker";
+            this.monthPicker.Size = new System.Drawing.Size(140, 36);
+            this.monthPicker.TabIndex = 12;
+            this.monthPicker.SelectedIndexChanged += new System.EventHandler(this.monthPicker_SelectedIndexChanged);
             // 
             // PanelPlot
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.monthPicker);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -190,5 +221,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private Guna.UI2.WinForms.Guna2ComboBox monthPicker;
     }
 }

@@ -17,7 +17,7 @@ namespace money_tracker
 {
     public partial class Home : Form
     {
-        static List<Transactions> database = new List<Transactions>();
+        static List<Transactions> database;
 
         static ConfigValues cfg;
 
@@ -27,28 +27,22 @@ namespace money_tracker
 
         public Home()
         {
+            database = new List<Transactions>();
             cfg = new ConfigValues();
-            cfg.readXml_categories();
-            cfg.readXml_modalities();
             activePanel = 100;
 
 
+            cfg.readXml_categories();
+            cfg.readXml_modalities();
             loadCSV();
+            
             InitializeComponent();
 
             PanelHome panel = new PanelHome(database);
             addUserControl(panel);
 
-            // change colors
-            panel1.BackColor        = Color.FromArgb(col.TABMENU_R, col.TABMENU_G, col.TABMENU_B);
-            ButtonHome.FillColor    = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
-            ButtonPlots.FillColor   = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
-            ButtonList.FillColor    = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
-            ButtonQuit.FillColor    = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
-            ButtonSetting.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
-            ButtonRefresh.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            setColors();
         }
-
 
         public void loadCSV()
         {
@@ -116,6 +110,34 @@ namespace money_tracker
             addUserControl(panel);
         }
 
+        private void ButtonRefresh_Click(object sender, EventArgs e)
+        {
+            database.Clear();
+            loadCSV();
+
+            if (activePanel == 0)
+            {
+                PanelHome panel = new PanelHome(database);
+                addUserControl(panel);
+            }
+            else if (activePanel == 1)
+            {
+                PanelPlot panel = new PanelPlot(database, cfg);
+                addUserControl(panel);
+            }
+            else if (activePanel == 2)
+            {
+                PanelList panel = new PanelList(database, cfg);
+                addUserControl(panel);
+            }
+            else if (activePanel == 3)
+            {
+                PanelSettings panel = new PanelSettings(database, cfg);
+                addUserControl(panel);
+            }
+        }
+
+
         private void ButtonQuit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -147,23 +169,15 @@ namespace money_tracker
 
 
 
-        private void ButtonRefresh_Click(object sender, EventArgs e)
+        private void setColors()
         {
-            database.Clear();
-            loadCSV();
-            if (activePanel==0)
-            {
-                ButtonHome.PerformClick();
-            }else if (activePanel == 1)
-            {
-                ButtonPlots.PerformClick();
-            }else if (activePanel == 2)
-            {
-                ButtonList.PerformClick();
-            }else if (activePanel == 3)
-            {
-                ButtonSetting.PerformClick();
-            }
+            panel1.BackColor = Color.FromArgb(col.TABMENU_R, col.TABMENU_G, col.TABMENU_B);
+            ButtonHome.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonPlots.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonList.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonQuit.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonSetting.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
+            ButtonRefresh.FillColor = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
         }
     }
 
