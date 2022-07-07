@@ -43,7 +43,6 @@
             this.buttonCat = new Guna.UI2.WinForms.Guna2Button();
             this.buttonMod = new Guna.UI2.WinForms.Guna2Button();
             this.buttonSave = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.SuspendLayout();
             // 
             // buttonPathCSV
@@ -108,6 +107,7 @@
             this.textPathXML.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textPathXML.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.textPathXML.Location = new System.Drawing.Point(289, 120);
+            this.textPathXML.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textPathXML.Name = "textPathXML";
             this.textPathXML.PasswordChar = '\0';
             this.textPathXML.PlaceholderText = "";
@@ -227,26 +227,10 @@
             this.buttonSave.TabIndex = 13;
             this.buttonSave.Text = "SAVE";
             // 
-            // guna2Button1
-            // 
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(997, 579);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(180, 45);
-            this.guna2Button1.TabIndex = 14;
-            this.guna2Button1.Text = "TEST";
-            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
-            // 
             // PanelSettings
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonMod);
             this.Controls.Add(this.buttonCat);
@@ -282,6 +266,5 @@
         private Guna.UI2.WinForms.Guna2Button buttonCat;
         private Guna.UI2.WinForms.Guna2Button buttonMod;
         private Guna.UI2.WinForms.Guna2Button buttonSave;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

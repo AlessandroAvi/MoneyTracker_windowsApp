@@ -51,6 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+git rm --cached
+
 # Data
 *.csv
 *.xlsx
