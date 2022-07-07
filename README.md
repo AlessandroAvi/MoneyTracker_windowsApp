@@ -5,13 +5,13 @@ The app gets the data from a csv that is specifically formatted to be correctly 
 
 ## UI
 
-<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/Home.png" width=70% height=70%>
+<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/Home.jpg" width=70% height=70%>
 
-<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/Plots.png" width=70% height=70%>
+<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/Plots.jpg" width=70% height=70%>
 
-<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/List.png" width=70% height=70%>
+<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/List.jpg" width=70% height=70%>
 
-<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/Setting.png" width=70% height=70%>
+<img src="https://github.com/AlessandroAvi/money_tracker_app/tree/main/screenshots/Setting.jpg" width=70% height=70%>
 
 ## TO DO
 
