@@ -1,9 +1,0 @@
- - ) aggiungere budget? -> aggiungere qualche sorta di cap suli grafici a barre?
-
- - ) trovare libreria o qualcosa che genera i PDF
-
- - ) fixare refresh button che non funziona su panels 
-
- - ) pagina setting aggiungere tasto save che salva le modifiche
-
- - ) finire tasto remove item in pagina list

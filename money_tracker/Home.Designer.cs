@@ -79,7 +79,7 @@
             this.ButtonRefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ButtonRefresh.ForeColor = System.Drawing.Color.White;
             this.ButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ButtonRefresh.Image")));
-            this.ButtonRefresh.ImageSize = new System.Drawing.Size(40, 35);
+            this.ButtonRefresh.ImageSize = new System.Drawing.Size(40, 36);
             this.ButtonRefresh.Location = new System.Drawing.Point(50, 580);
             this.ButtonRefresh.Name = "ButtonRefresh";
             this.ButtonRefresh.Size = new System.Drawing.Size(62, 55);
@@ -95,11 +95,11 @@
             this.ButtonSetting.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonSetting.ForeColor = System.Drawing.Color.White;
             this.ButtonSetting.Image = ((System.Drawing.Image)(resources.GetObject("ButtonSetting.Image")));
+            this.ButtonSetting.ImageSize = new System.Drawing.Size(50, 50);
             this.ButtonSetting.Location = new System.Drawing.Point(15, 480);
             this.ButtonSetting.Name = "ButtonSetting";
             this.ButtonSetting.Size = new System.Drawing.Size(100, 70);
             this.ButtonSetting.TabIndex = 2;
-            this.ButtonSetting.Text = "Settings";
             this.ButtonSetting.Click += new System.EventHandler(this.ButtonSetting_Click);
             // 
             // ButtonPlots
@@ -111,12 +111,11 @@
             this.ButtonPlots.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonPlots.ForeColor = System.Drawing.Color.White;
             this.ButtonPlots.Image = ((System.Drawing.Image)(resources.GetObject("ButtonPlots.Image")));
-            this.ButtonPlots.ImageSize = new System.Drawing.Size(30, 30);
+            this.ButtonPlots.ImageSize = new System.Drawing.Size(50, 50);
             this.ButtonPlots.Location = new System.Drawing.Point(15, 280);
             this.ButtonPlots.Name = "ButtonPlots";
             this.ButtonPlots.Size = new System.Drawing.Size(100, 70);
             this.ButtonPlots.TabIndex = 1;
-            this.ButtonPlots.Text = "Plots";
             this.ButtonPlots.Click += new System.EventHandler(this.ButtonPlots_Click);
             // 
             // ButtonList
@@ -128,12 +127,11 @@
             this.ButtonList.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonList.ForeColor = System.Drawing.Color.White;
             this.ButtonList.Image = ((System.Drawing.Image)(resources.GetObject("ButtonList.Image")));
-            this.ButtonList.ImageSize = new System.Drawing.Size(30, 30);
+            this.ButtonList.ImageSize = new System.Drawing.Size(50, 50);
             this.ButtonList.Location = new System.Drawing.Point(15, 380);
             this.ButtonList.Name = "ButtonList";
             this.ButtonList.Size = new System.Drawing.Size(100, 70);
             this.ButtonList.TabIndex = 0;
-            this.ButtonList.Text = "List";
             this.ButtonList.Click += new System.EventHandler(this.ButtonList_Click);
             // 
             // ButtonQuit
@@ -145,12 +143,11 @@
             this.ButtonQuit.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonQuit.ForeColor = System.Drawing.Color.White;
             this.ButtonQuit.Image = ((System.Drawing.Image)(resources.GetObject("ButtonQuit.Image")));
-            this.ButtonQuit.ImageSize = new System.Drawing.Size(30, 30);
+            this.ButtonQuit.ImageSize = new System.Drawing.Size(50, 50);
             this.ButtonQuit.Location = new System.Drawing.Point(22, 739);
             this.ButtonQuit.Name = "ButtonQuit";
             this.ButtonQuit.Size = new System.Drawing.Size(94, 78);
             this.ButtonQuit.TabIndex = 0;
-            this.ButtonQuit.Text = "Quit";
             this.ButtonQuit.Click += new System.EventHandler(this.ButtonQuit_Click);
             // 
             // ButtonHome
@@ -162,12 +159,11 @@
             this.ButtonHome.Font = new System.Drawing.Font("Roboto", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonHome.ForeColor = System.Drawing.Color.White;
             this.ButtonHome.Image = ((System.Drawing.Image)(resources.GetObject("ButtonHome.Image")));
-            this.ButtonHome.ImageSize = new System.Drawing.Size(30, 30);
+            this.ButtonHome.ImageSize = new System.Drawing.Size(50, 50);
             this.ButtonHome.Location = new System.Drawing.Point(15, 180);
             this.ButtonHome.Name = "ButtonHome";
             this.ButtonHome.Size = new System.Drawing.Size(100, 70);
             this.ButtonHome.TabIndex = 0;
-            this.ButtonHome.Text = "Home";
             this.ButtonHome.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.ButtonHome.Click += new System.EventHandler(this.ButtonHome_Click);
             // 

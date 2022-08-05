@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
 using System.Text.RegularExpressions;
-
+using System.Data.SqlClient;
 
 
 
@@ -22,14 +22,19 @@ namespace money_tracker
         static ConfigValues cfg;
 
         public int activePanel;
-         
 
+        
 
         public Home()
         {
             database = new List<Transactions>();
             cfg = new ConfigValues();
             activePanel = 100;
+
+            string connectionString = @"Data Source=DESKTOP-C1G8LF5\SQLEXPRESS;Initial Catalog=MONEY_TRACKER;Integrated Security=True;Pooling=False";
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open(); 
 
 
             cfg.readXml_categories();

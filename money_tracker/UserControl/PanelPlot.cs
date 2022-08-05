@@ -17,12 +17,14 @@ namespace money_tracker
         List<Transactions> database = new List<Transactions>();
         List<Transactions> filteredDatabase = new List<Transactions>();
 
+        Home home;
+
         double totalExpenses = 0;
         double totalEntries = 0;
         double necessaryExpenses = 0;
         double notNeccessaryExpenses = 0;
-        double[] categoryExpense = { 0, 0, 0, 0, 0, 0 };
-        double[] modalityExpenses = { 0, 0, 0, 0 };
+        double[] categoryExpense;
+        double[] modalityExpenses;
 
         int selectedMonth;
         int currentMonth;
@@ -32,6 +34,9 @@ namespace money_tracker
         {
             cfg = _cfg;
             database = _database;
+            categoryExpense = new double[cfg.categories.Count];
+            modalityExpenses = new double[cfg.modalities.Count];
+
             InitializeComponent();
 
             currentMonth = DateTime.Now.Month;
@@ -118,7 +123,7 @@ namespace money_tracker
 
             // Add savings
             names[cfg.categories.Count] = "Savings";
-            values[cfg.categories.Count] = (float)(totalEntries / (totalEntries + totalExpenses));
+            values[cfg.categories.Count] = (float)((totalEntries-totalExpenses) / (totalEntries + totalExpenses));
 
             pieChartModality.Series[0].ChartType = SeriesChartType.Pie;
             pieChartModality.Series[0].Points.DataBindXY(names, values);

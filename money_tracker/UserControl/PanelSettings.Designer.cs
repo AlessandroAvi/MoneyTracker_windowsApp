@@ -121,19 +121,19 @@
             this.labelCat.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCat.Location = new System.Drawing.Point(68, 272);
             this.labelCat.Name = "labelCat";
-            this.labelCat.Size = new System.Drawing.Size(250, 24);
+            this.labelCat.Size = new System.Drawing.Size(107, 24);
             this.labelCat.TabIndex = 6;
-            this.labelCat.Text = "List of available categories";
+            this.labelCat.Text = "Categories";
             // 
             // labelMod
             // 
             this.labelMod.AutoSize = true;
             this.labelMod.Font = new System.Drawing.Font("Roboto", 12F);
-            this.labelMod.Location = new System.Drawing.Point(545, 272);
+            this.labelMod.Location = new System.Drawing.Point(465, 272);
             this.labelMod.Name = "labelMod";
-            this.labelMod.Size = new System.Drawing.Size(333, 24);
+            this.labelMod.Size = new System.Drawing.Size(189, 24);
             this.labelMod.TabIndex = 8;
-            this.labelMod.Text = "List of available payment modalities";
+            this.labelMod.Text = "Payment modalities";
             // 
             // listViewCat
             // 
@@ -166,7 +166,7 @@
             this.columnHeader4});
             this.listViewMod.Font = new System.Drawing.Font("Roboto", 12F);
             this.listViewMod.HideSelection = false;
-            this.listViewMod.Location = new System.Drawing.Point(549, 321);
+            this.listViewMod.Location = new System.Drawing.Point(469, 321);
             this.listViewMod.Name = "listViewMod";
             this.listViewMod.Size = new System.Drawing.Size(290, 270);
             this.listViewMod.TabIndex = 10;
@@ -206,7 +206,7 @@
             this.buttonMod.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonMod.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.buttonMod.ForeColor = System.Drawing.Color.White;
-            this.buttonMod.Location = new System.Drawing.Point(739, 597);
+            this.buttonMod.Location = new System.Drawing.Point(659, 597);
             this.buttonMod.Name = "buttonMod";
             this.buttonMod.Size = new System.Drawing.Size(100, 40);
             this.buttonMod.TabIndex = 12;
