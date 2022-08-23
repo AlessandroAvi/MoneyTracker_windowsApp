@@ -60,7 +60,8 @@ namespace money_tracker
                     balance += item.amount;
                 }
             }
-            labelTotalBalance.Text = "Total:   " + Math.Round(balance, 2).ToString() + " €";
+            string result = (Math.Truncate(balance * 100) / 100).ToString("0.00").PadLeft(8, '\x2007'); ;
+            labelTotalBalanceVal.Text = result + " €";
         }
 
 
@@ -80,8 +81,8 @@ namespace money_tracker
                     balance += item.amount;
                 }
             }
-            labelMonthBalance.Text = "Month balance:       " + Math.Round(balance,2).ToString() + " €";
-            balance = 0;
+            string result = (Math.Truncate(balance * 100) / 100).ToString("0.00").PadLeft(8, '\x2007'); ;
+            labelMonthBalanceVal.Text = result + " €";
         }
 
 
@@ -92,7 +93,20 @@ namespace money_tracker
             {
                 if (item.type == 0)  balance += item.amount;
             }
-            labelMonthExpenses.Text = "Month expenses:   " + Math.Round(balance, 2).ToString() + " €";
+            string result = (Math.Truncate(balance * 100) / 100).ToString("0.00").PadLeft(8, '\x2007'); ;
+            labelMonthExpensesVal.Text = result + " €";
+        }
+
+        public void setLabelMonthEntries()
+        {
+            double balance = 0;
+            foreach (var item in databaseFiltered)
+            {
+                if (item.type == 1) balance += item.amount;
+            }
+            string result = (Math.Truncate(balance * 100) / 100).ToString("0.00").PadLeft(8, '\x2007'); ;
+            labelMonthEntriesVal.Text = result + " €";
+
         }
 
         public void setLabelDaysCounter()
@@ -217,6 +231,7 @@ namespace money_tracker
             setLabelTotalBalance();
             setLabelMonthBalance();
             setLabelMonthExpenses();
+            setLabelMonthEntries();
             setLabelDaysCounter();
             calculatePlot();
             displayPlot();
