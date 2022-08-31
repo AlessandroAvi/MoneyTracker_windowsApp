@@ -236,5 +236,18 @@ namespace money_tracker
             calculatePlot();
             displayPlot();
         }
+
+
+        public void refreshDatabase(List<Transactions> _database)
+        {
+            database.Clear();
+            database = _database;
+
+            filterDatabaseMonth();
+            calculatePlot();
+            displayPlot();
+
+
+        }
     }
 }

@@ -23,13 +23,20 @@ namespace money_tracker
 
         public int activePanel;
 
-        
+
+        PanelHome panelH;
+        PanelPlot panelP;
+        PanelList panelL;
+        PanelSettings panelS;
+
+
+
 
         public Home()
         {
             database = new List<Transactions>();
             cfg = new ConfigValues();
-            activePanel = 100;
+            activePanel = 0;
 
             string connectionString = @"Data Source=DESKTOP-C1G8LF5\SQLEXPRESS;Initial Catalog=MONEY_TRACKER;Integrated Security=True;Pooling=False";
 
@@ -43,10 +50,18 @@ namespace money_tracker
             
             InitializeComponent();
 
-            PanelHome panel = new PanelHome(database);
-            addUserControl(panel);
-
             setColors();
+
+            panelH = new PanelHome(database);
+            addUserControl(panelH);
+            panelP = new PanelPlot(database, cfg);
+            addUserControl(panelP);
+            panelL = new PanelList(database, cfg);
+            addUserControl(panelL);
+            panelS = new PanelSettings(database, cfg);
+            addUserControl(panelS);
+
+            HighlightButton(activePanel);
         }
 
         public void loadCSV()
@@ -78,7 +93,7 @@ namespace money_tracker
         private void addUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
-            panelContainer.Controls.Clear();
+            //panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControl);
             userControl.BringToFront();
         }
@@ -87,32 +102,24 @@ namespace money_tracker
         {
             activePanel = 0;
             HighlightButton(activePanel);
-            PanelHome panel = new PanelHome(database);
-            addUserControl(panel);
         }
 
         private void ButtonPlots_Click(object sender, EventArgs e)
         {
             activePanel = 1;
             HighlightButton(activePanel);
-            PanelPlot panel = new PanelPlot(database, cfg);
-            addUserControl(panel);
         }
 
         private void ButtonList_Click(object sender, EventArgs e)
         {
             activePanel = 2;
             HighlightButton(activePanel);
-            PanelList panel = new PanelList(database, cfg);
-            addUserControl(panel);
         }
 
         private void ButtonSetting_Click(object sender, EventArgs e)
         {
             activePanel = 3;
             HighlightButton(activePanel);
-            PanelSettings panel = new PanelSettings(database, cfg);
-            addUserControl(panel);
         }
 
         private void ButtonRefresh_Click(object sender, EventArgs e)
@@ -120,26 +127,11 @@ namespace money_tracker
             database.Clear();
             loadCSV();
 
-            if (activePanel == 0)
-            {
-                PanelHome panel = new PanelHome(database);
-                addUserControl(panel);
-            }
-            else if (activePanel == 1)
-            {
-                PanelPlot panel = new PanelPlot(database, cfg);
-                addUserControl(panel);
-            }
-            else if (activePanel == 2)
-            {
-                PanelList panel = new PanelList(database, cfg);
-                addUserControl(panel);
-            }
-            else if (activePanel == 3)
-            {
-                PanelSettings panel = new PanelSettings(database, cfg);
-                addUserControl(panel);
-            }
+            panelH.refreshDatabase(database);
+            panelH.Refresh();
+            panelP.Refresh();
+            panelL.Refresh();
+            panelS.Refresh();
         }
 
 
@@ -158,17 +150,21 @@ namespace money_tracker
             if (code == 0)
             {
                 ButtonHome.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+                panelH.BringToFront();
             }
             else if(code == 1){
                 ButtonPlots.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+                panelP.BringToFront();
             }
             else if (code == 2)
             {
                 ButtonList.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+                panelL.BringToFront();
             }
             else if (code == 3)
             {
                 ButtonSetting.FillColor = Color.FromArgb(col.BUTTON_PRESS_R, col.BUTTON_PRESS_G, col.BUTTON_PRESS_B);
+                panelS.BringToFront();
             }
         }
 
