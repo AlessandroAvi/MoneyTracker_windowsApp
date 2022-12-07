@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.ButtonAddItem = new Guna.UI2.WinForms.Guna2Button();
-            this.ButtonRemoveItem = new Guna.UI2.WinForms.Guna2Button();
             this.listViewTransactions = new System.Windows.Forms.ListView();
             this.col0 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -59,21 +58,6 @@
             this.ButtonAddItem.TabIndex = 1;
             this.ButtonAddItem.Text = "Add item";
             this.ButtonAddItem.Click += new System.EventHandler(this.ButtonAddItem_Click);
-            // 
-            // ButtonRemoveItem
-            // 
-            this.ButtonRemoveItem.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.ButtonRemoveItem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.ButtonRemoveItem.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.ButtonRemoveItem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.ButtonRemoveItem.Font = new System.Drawing.Font("Roboto", 10.8F);
-            this.ButtonRemoveItem.ForeColor = System.Drawing.Color.White;
-            this.ButtonRemoveItem.Location = new System.Drawing.Point(301, 781);
-            this.ButtonRemoveItem.Name = "ButtonRemoveItem";
-            this.ButtonRemoveItem.Size = new System.Drawing.Size(180, 45);
-            this.ButtonRemoveItem.TabIndex = 2;
-            this.ButtonRemoveItem.Text = "Remove item";
-            this.ButtonRemoveItem.Click += new System.EventHandler(this.ButtonRemoveItem_Click);
             // 
             // listViewTransactions
             // 
@@ -147,7 +131,7 @@
             this.datePickerBegin1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.datePickerBegin1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.datePickerBegin1.Name = "datePickerBegin1";
-            this.datePickerBegin1.Size = new System.Drawing.Size(240, 40);
+            this.datePickerBegin1.Size = new System.Drawing.Size(274, 40);
             this.datePickerBegin1.TabIndex = 9;
             this.datePickerBegin1.Value = new System.DateTime(2022, 5, 21, 17, 31, 53, 82);
             this.datePickerBegin1.ValueChanged += new System.EventHandler(this.datePickerBegin1_ValueChanged);
@@ -161,7 +145,7 @@
             this.datePickerEnd1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.datePickerEnd1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.datePickerEnd1.Name = "datePickerEnd1";
-            this.datePickerEnd1.Size = new System.Drawing.Size(240, 40);
+            this.datePickerEnd1.Size = new System.Drawing.Size(274, 40);
             this.datePickerEnd1.TabIndex = 10;
             this.datePickerEnd1.Value = new System.DateTime(2022, 5, 21, 17, 31, 58, 799);
             this.datePickerEnd1.ValueChanged += new System.EventHandler(this.datePickerEnd1_ValueChanged);
@@ -212,7 +196,6 @@
             this.Controls.Add(this.datePickerBegin1);
             this.Controls.Add(this.buttonDateApply);
             this.Controls.Add(this.listViewTransactions);
-            this.Controls.Add(this.ButtonRemoveItem);
             this.Controls.Add(this.ButtonAddItem);
             this.Name = "PanelList";
             this.Size = new System.Drawing.Size(1342, 864);
@@ -223,7 +206,6 @@
 
         #endregion
         private Guna.UI2.WinForms.Guna2Button ButtonAddItem;
-        private Guna.UI2.WinForms.Guna2Button ButtonRemoveItem;
         private System.Windows.Forms.ListView listViewTransactions;
         private System.Windows.Forms.ColumnHeader col0;
         private System.Windows.Forms.ColumnHeader col1;

@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
 using System.Text.RegularExpressions;
-using System.Data.SqlClient;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 
 
@@ -17,20 +18,22 @@ namespace money_tracker
 {
     public partial class Home : Form
     {
+        // Classes
         static List<Transactions> database;
-
         static ConfigValues cfg;
+        IMongoCollection<BsonDocument> DBcollection;
 
-        public int activePanel;
-
-
+        // Panels
         PanelHome panelH;
         PanelPlot panelP;
         PanelList panelL;
         PanelSettings panelS;
 
+        // Other
+        public int activePanel;
 
-
+        public MongoClient dbClient;
+        public IMongoDatabase db;
 
         public Home()
         {
@@ -38,15 +41,11 @@ namespace money_tracker
             cfg = new ConfigValues();
             activePanel = 0;
 
-            string connectionString = @"Data Source=DESKTOP-C1G8LF5\SQLEXPRESS;Initial Catalog=MONEY_TRACKER;Integrated Security=True;Pooling=False";
-
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open(); 
-
+            ConnectDB();
+            ReadFromDB();
 
             cfg.readXml_categories();
             cfg.readXml_modalities();
-            loadCSV();
             
             InitializeComponent();
 
@@ -56,7 +55,7 @@ namespace money_tracker
             addUserControl(panelH);
             panelP = new PanelPlot(database, cfg);
             addUserControl(panelP);
-            panelL = new PanelList(database, cfg);
+            panelL = new PanelList(database, cfg, this);
             addUserControl(panelL);
             panelS = new PanelSettings(database, cfg);
             addUserControl(panelS);
@@ -64,31 +63,37 @@ namespace money_tracker
             HighlightButton(activePanel);
         }
 
-        public void loadCSV()
+
+        public void ConnectDB()
         {
-            try
-            {
-                using (TextFieldParser parser = new TextFieldParser(cfg.csvPath))
-                {
-                    parser.TextFieldType = FieldType.Delimited;
-                    parser.SetDelimiters(";");
-                    while (!parser.EndOfData)
-                    {
-                        //Process row
-                        string[] transaction = parser.ReadFields();
-                        Transactions trans = new Transactions(transaction);
-                        database.Add(trans);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("ERROR: here was an error while reading the CSV \n\r" + e.Message);
-                return;
-            }
-            
+            dbClient = new MongoClient("mongodb+srv://alessandroavi:0oWRT7oqf4alqzaS@clusterbot.gxgqhc5.mongodb.net/?retryWrites=true&w=majority");
+            db = dbClient.GetDatabase("ClusterBot");
+            DBcollection = db.GetCollection<BsonDocument>("Production");
         }
 
+
+        public IMongoDatabase GetDb()
+        {
+            return dbClient.GetDatabase("ClusterBot");
+        }
+
+
+
+        public void ReadFromDB()
+        {
+            var items = DBcollection.Find(new BsonDocument()).ToList();
+            Console.WriteLine(items);
+            foreach (BsonDocument item in items)
+            {
+                Transactions trans = new Transactions(item[1].ToString(), // date
+                                                      item[2].ToDouble(), // amount
+                                                      item[3].ToString(), // type
+                                                      item[4].ToString(), // method or mod
+                                                      item[5].ToString(), // cat
+                                                      item[6].ToString()); // note
+                database.Add(trans);
+            }
+        }
 
         private void addUserControl(UserControl userControl)
         {
@@ -125,7 +130,7 @@ namespace money_tracker
         private void ButtonRefresh_Click(object sender, EventArgs e)
         {
             database.Clear();
-            loadCSV();
+            ReadFromDB();
 
             panelH.refreshDatabase(database);
             panelH.Refresh();
@@ -133,7 +138,6 @@ namespace money_tracker
             panelL.Refresh();
             panelS.Refresh();
         }
-
 
         private void ButtonQuit_Click(object sender, EventArgs e)
         {
@@ -183,9 +187,9 @@ namespace money_tracker
     }
 
 
+
     public class Transactions
     {
-
         public string date;
         public double amount;
         public int type;
@@ -197,19 +201,15 @@ namespace money_tracker
         public int month;
         public int day;
 
-        public Transactions(string[] arr)
-        {
-            date     = arr[0];
-            amount   = Convert.ToDouble(arr[1]);
-            type     = Convert.ToInt16(arr[2]);
-            modality = Convert.ToInt16(arr[3]);
-            category = Convert.ToInt16(arr[4]);
-            note     = arr[5];
-        }
 
-        public Transactions(int _amount)
+        public Transactions(string _date, double _amount, string _type, string _mod, string _cat, string _note)
         {
-            amount = _amount;
+            date     = _date;
+            amount   = _amount;
+            type     = Convert.ToInt16(_type);
+            modality = Convert.ToInt16(_mod);
+            category = Convert.ToInt16(_cat);
+            note     = _note;
         }
 
         public bool parseDate()

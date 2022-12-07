@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.FileIO;
 using System.IO;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace money_tracker
 {
@@ -24,8 +20,10 @@ namespace money_tracker
 
         PanelList panelList;
 
+        Home home;
 
-        public PanelList(List<Transactions> _database, ConfigValues _cfg)
+
+        public PanelList(List<Transactions> _database, ConfigValues _cfg, Home _home)
         {
             InitializeComponent();
 
@@ -34,6 +32,7 @@ namespace money_tracker
             refreshListView();
             panelList = this;
             cfg = _cfg;
+            home = _home;
 
 
             // change colors
@@ -41,7 +40,6 @@ namespace money_tracker
             buttonDateApply.FillColor   = Color.FromArgb(col.BUTTON_R,col.BUTTON_G,col.BUTTON_B);
             ButtonAddItem.FillColor     = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             ButtonPDF.FillColor         = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
-            ButtonRemoveItem.FillColor  = Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             datePickerBegin1.FillColor  = Color.FromArgb(col.PICKER_R, col.PICKER_G, col.PICKER_B);
             datePickerEnd1.FillColor    = Color.FromArgb(col.PICKER_R, col.PICKER_G, col.PICKER_B);
 
@@ -50,33 +48,23 @@ namespace money_tracker
 
 
 
-        public void addTransaction(string date, string amount, string type, string mode, string cat, string note)
+        public async void addTransaction(string date, string amount, string type, string mode, string cat, string note)
         {
-            try 
+            var db = home.GetDb();
+
+            var collection = db.GetCollection<BsonDocument>("Production");
+
+            var document = new BsonDocument()
             {
-                if (File.Exists(cfg.csvPath))
-                {
-                    string string_item = date + ";" + amount + ";" + type + ";" + mode + ";" + cat + ";" + note + Environment.NewLine;
+                {"date",date },
+                {"amount",amount },
+                {"type",type },
+                {"method",mode },
+                {"cat",cat },
+                {"note",note }
+            };
 
-                    File.AppendAllText(cfg.csvPath, string_item);
-                }
-
-                int type_ = Convert.ToInt32(type);
-                int mode_ = Convert.ToInt32(mode);
-                int cat_ = Convert.ToInt32(cat);
-                string[] elementStr = { date, amount, fromIntToType(type_), fromIntToModality(mode_), fromIntToCategory(cat_), note };
-                listViewTransactions.Items.Add(new ListViewItem(elementStr));
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("ERROR: There was an error while writing to CSV\n\r" + e.Message);
-                return;
-            }
-        }
-
-        void removeTransaction(ListView.SelectedListViewItemCollection item)
-        {
-
+            await collection.InsertOneAsync(document);
         }
 
 
@@ -192,11 +180,6 @@ namespace money_tracker
         private void buttonDateApply_Click(object sender, EventArgs e)
         {
             refreshListView();
-        }
-
-        private void ButtonRemoveItem_Click(object sender, EventArgs e)
-        {
-            removeTransaction(listViewTransactions.SelectedItems);
         }
 
         private void datePickerBegin1_ValueChanged(object sender, EventArgs e)

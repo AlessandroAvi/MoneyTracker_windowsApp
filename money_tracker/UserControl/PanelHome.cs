@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Wpf;
@@ -206,8 +205,8 @@ namespace money_tracker
 
         public void displayPlot()
         {
-            chartCartesian.Series.Clear();
-            SeriesCollection data; ;
+            //chartCartesian.Series.Clear();
+            SeriesCollection data;
             data = new SeriesCollection
             {
                 new LineSeries
@@ -219,13 +218,27 @@ namespace money_tracker
             };
 
             chartCartesian.Series = data;
+            chartCartesian.Update();
         }
+
+        public void removeAllPointsPlot()
+        {
+            int count = 0;
+            foreach (var item in plotValues)
+            {
+                plotValues[count] = 0;
+            }
+
+            chartCartesian.Series = null;
+
+        }
+
 
         private void monthPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedMonth = monthPicker.SelectedIndex + 1;
+            removeAllPointsPlot();
             databaseFiltered.Clear();
-            plotValues.Clear();
             filterDatabaseMonth();
 
             setLabelTotalBalance();
@@ -233,6 +246,8 @@ namespace money_tracker
             setLabelMonthExpenses();
             setLabelMonthEntries();
             setLabelDaysCounter();
+
+            plotValues.Clear();
             calculatePlot();
             displayPlot();
         }

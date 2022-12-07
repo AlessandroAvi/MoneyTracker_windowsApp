@@ -23,14 +23,12 @@ namespace money_tracker
             initListMod();
 
 
-            textPathCSV.Text = cfg.csvPath;
             textPathXML.Text = cfg.xmlPath;
 
             // change colors
             this.BackColor          = System.Drawing.Color.FromArgb(col.BACKGROUND_R, col.BACKGROUND_G, col.BACKGROUND_B);
             buttonCat.FillColor     = System.Drawing.Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             buttonMod.FillColor     = System.Drawing.Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
-            buttonPathCSV.FillColor = System.Drawing.Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             buttonPathXML.FillColor = System.Drawing.Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
             buttonSave.FillColor    = System.Drawing.Color.FromArgb(col.BUTTON_R, col.BUTTON_G, col.BUTTON_B);
         }
@@ -61,18 +59,6 @@ namespace money_tracker
 
 
         // BUTTONS
-        private void buttonPathCSV_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}";
-    
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                textPathCSV.Text = dialog.FileName;
-                cfg.csvPath = dialog.FileName;
-            }
-        }
-
         private void buttonPathXML_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -80,10 +66,7 @@ namespace money_tracker
 
             if (dialog.ShowDialog() == DialogResult.OK) {
                 textPathXML.Text = dialog.FileName;
-                cfg.xmlPath = dialog.FileName;
             }
-             
-
         }
 
         private void buttonCat_Click(object sender, EventArgs e)
@@ -102,10 +85,13 @@ namespace money_tracker
             initListMod();
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
+            cfg.xmlPath = textPathXML.Text;
             cfg.writeXml_modalities();
             cfg.writeXml_categories();
         }
+
+
     }
 }
